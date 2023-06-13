@@ -2,7 +2,10 @@ FROM rust:alpine as builder
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
-RUN apk --no-cache add openssl-dev
+RUN apk --no-cache add  \
+    openssl-dev \
+    musl-dev \
+    musl-tools
 COPY . .
 RUN cargo build --release
 
