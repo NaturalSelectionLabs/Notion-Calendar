@@ -13,8 +13,8 @@ RUN apt-get update && \
     ca-certificates \
     curl \
     && rm -rf /var/lib/apt/lists/*
-RUN curl -sSL -o /usr/local/bin/tini "https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-amd64" && \
-    chmod +x /usr/local/bin/tini
+RUN curl -sSL -o /sbin/tini "https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-amd64" && \
+    chmod +x /sbin/tini
 
 COPY --from=builder /usr/src/app/target/release/notion_calendar /usr/local/bin/notion_calendar
 ENTRYPOINT ["/sbin/tini", "--"]
