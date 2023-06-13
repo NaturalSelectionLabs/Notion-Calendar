@@ -1,0 +1,14 @@
+image:
+  repository: rss3/notion-calendar
+
+service:
+  type: ClusterIP
+  port: 3000
+
+ingressRoute:
+  enabled: true
+  routes:
+    - Host(`notion-calendar.nsl.xyz`)
+  entrypoint:
+    - web
+    - websecure

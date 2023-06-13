@@ -1,0 +1,15 @@
+[package]
+name = "notion_calendar"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+hyper = { version = "0.14.26", features = ["full"] }
+hyper-tls = "0.5.0"
+icalendar = "0.15.4"
+serde = { version = "1.0", features = ["derive"] }
+tokio = { version = "1", features = ["full"] }
+serde_json = "1.0.96"
+chrono = "0.4.26"
