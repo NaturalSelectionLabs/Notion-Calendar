@@ -2,8 +2,6 @@ FROM rust:alpine as builder
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
-COPY Cargo.toml Cargo.lock ./
-RUN mkdir src && echo "fn main() {}" > src/main.rs && cargo build --release
 COPY . .
 RUN cargo build --release
 
