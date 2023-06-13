@@ -4,8 +4,7 @@ FROM rust:alpine as builder
 WORKDIR /usr/src/app
 RUN apk --no-cache add  \
     openssl-dev \
-    musl-dev \
-    musl-tools
+    musl-dev 
 COPY . .
 RUN cargo build --release
 
