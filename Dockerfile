@@ -1,4 +1,4 @@
-FROM rust:alpine as builder
+FROM rust:1.65-alpine as builder
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
