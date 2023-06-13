@@ -12,3 +12,7 @@ ingressRoute:
   entrypoint:
     - web
     - websecure
+
+envFrom:
+  - secretRef:
+      name: notion-calendar

@@ -17,20 +17,22 @@ fn log_request(req: &Request<Body>) {
 /// This is our service handler. It receives a Request, routes on its
 /// path, and returns a Future of a Response.
 pub async fn echo(req: Request<Body>) -> Result<Response<Body>, hyper::Error> {
-    log_request(&req);
-
     match (req.method(), req.uri().path()) {
         // Serve some instructions at /
-        (&Method::GET, "/") => match list_calendars().await {
-            Ok(results) => match from_results(results) {
-                Ok(data) => Ok(Response::new(Body::from(format!("{}", data)))),
+        (&Method::GET, "/") => {
+            log_request(&req);
+            match list_calendars().await {
+                Ok(results) => match from_results(results) {
+                    Ok(data) => Ok(Response::new(Body::from(format!("{}", data)))),
+                    Err(err) => Ok(Response::new(Body::from(format!("{:#?}", err)))),
+                },
                 Err(err) => Ok(Response::new(Body::from(format!("{:#?}", err)))),
-            },
-            Err(err) => Ok(Response::new(Body::from(format!("{:#?}", err)))),
-        },
+            }
+        }
 
         // Simply echo the body back to the client.
         // (&Method::POST, "/echo") => Ok(Response::new(req.into_body())),
+        (&Method::GET, "/healthcheck") => Ok(Response::new(Body::from("ok"))),
 
         // Convert to uppercase before sending back to client using a stream.
         // (&Method::POST, "/echo/uppercase") => {
