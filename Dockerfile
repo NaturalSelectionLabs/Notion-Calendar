@@ -1,7 +1,8 @@
-FROM rust:1.65-alpine as builder
+FROM rust:alpine as builder
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
+RUN apk --no-cache add musl-tools
 COPY . .
 RUN cargo build --release
 
